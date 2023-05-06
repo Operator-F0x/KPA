@@ -1,5 +1,7 @@
-import os , glob, hashlib,re 
+import os , glob, hashlib 
 from pykeepass import pykeepass
+from key_parse import Regex_Clear_password
+from key_maker import Hashing_Password
 
 # Function to initialize the program and create necessary directories and files
 def initializer():
@@ -16,23 +18,19 @@ def initializer():
     os.makedirs( key_dir, exist_ok=True )
 
     # Get a list of all database files in the database directory
-    database_files = glob.glob(os.path.join(db_dir, '*.kdbx'))
+    database_files = glob.glob(os.path.join(db_dir, 'KPA.kdbx'))
 
     # If no database exists, create a new one and prompt the user to create a key for it
     if not database_files:
         print('No database found. Please create a password for the new database.')    
-
+        
         password = ''
 
-        # Function to check if a password is valid
-        def checkpass(PSW):
-            PASSWORD_REGEX = r'^[a-zA-Z0-9!"#$%&]+$'
-            return bool(re.match(PASSWORD_REGEX, PSW))
-        
         # Prompt the user to enter a password until a valid one is entered
         while True:
+
             password = input('Enter a password for the new database: ')
-            if checkpass(password):
+            if Regex_Clear_password(password):
                 break
             else:
                 print('Invalid password. Please enter a non-empty password that contains only alphanumeric characters and some special characters.')                         
@@ -41,22 +39,13 @@ def initializer():
         keepass = pykeepass.create_database(os.path.join(db_dir,'KPA.kdbx'),password)
         keepass.save()
 
-        # Function to hash the password and return the hash value
-        def Hashing_Password(password_On_Clear):
-            password_bytes = password_On_Clear.encode('utf-8')
-            hash_object = hashlib.new('sha256')
-            hash_object.update(password_bytes)
-            hash_value = hash_object.hexdigest()
-            return hash_value
-        
-        # Hash the password and save the hash value to a file in the key directory
         hash_value = Hashing_Password(password)
-        Hash_Key = open(os.path.join(key_dir,'KEY.txt'),'w')
-        Hash_Key.write(hash_value)
+        Hash_Key = open(os.path.join(key_dir,'KEY_HASH.txt'),'w')
+        Hash_Key.write(str(hash_value))
         Hash_Key.close()
-
+        
     # Get a list of all key files in the key directory
-    key_files = glob.glob(os.path.join(key_dir, '*.txt'))
+    key_files = glob.glob(os.path.join(key_dir, 'KEY_HASH.txt'))
 
     # Return the paths for the database and key directories, and the list of database and key files
     return db_dir, database_files, key_dir, key_files
