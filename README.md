@@ -7,7 +7,7 @@ then return in the automatic database all entries that do not have duplicates or
 database into one by simply moving the databases or files
 csv in the folders created by the program
 
-<p>
+<p align = 'center'>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/KeePass_Logo_%282016%29.svg/180px-KeePass_Logo_%282016%29.svg.png"
 style="vertical-align:center"></img>
 </p>
