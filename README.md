@@ -1,6 +1,6 @@
-<p align = 'right'>
+<p>
 <h1> KPA</h1>
-<img src="https://i.imgur.com/J1h1OAg.png"></img>
+<img align = 'right' src="https://i.imgur.com/J1h1OAg.png"></img>
 
 </p>
 
