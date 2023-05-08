@@ -1,5 +1,5 @@
-<p align = 'center'><img src="https://i.imgur.com/J1h1OAg.png"></img>
-<h1 align= 'center'> KPA</h1>
+<p align = 'right'><img src="https://i.imgur.com/J1h1OAg.png"></img>
+<h1> KPA</h1>
 </p>
 
 <h1 align= 'center'> KPA</h1>
