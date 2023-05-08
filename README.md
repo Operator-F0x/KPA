@@ -3,7 +3,7 @@
 <h1 align= 'center'> KPA</h1>
 
 <h3 align='center'>Project to create an automatic keepass database to import and automate the checking of many entries.</h3>
-
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/Daniele-Polizzi/Daniele-Polizzi/KPA)
 
 
 - import csv files or other keepass and databases removing duplicates
