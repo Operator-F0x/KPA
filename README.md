@@ -1,10 +1,8 @@
 <p>
-<h1> KPA</h1>
 <img align = 'right' src="https://i.imgur.com/J1h1OAg.png"></img>
-
 </p>
 
-<h1 align= 'center'> KPA</h1>
+<h1>KPA</h1>
 
 <h3 align='center'>Project to create an automatic keepass database to import and automate the checking of many entries.</h3>
 
