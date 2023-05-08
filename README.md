@@ -8,7 +8,7 @@
 
 
 -------
-- import csv files or other keepass and databases removing duplicates
+- import csv files or other keepass databases and chenk and removing duplicates
 - automatically set up groups for new entries based on the referrer URL of the new entry
 -------
 ![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/Daniele-Polizzi/KPA)
