@@ -1,5 +1,7 @@
-<p align = 'right'><img src="https://i.imgur.com/J1h1OAg.png"></img>
+<p align = 'right'>
 <h1> KPA</h1>
+<img src="https://i.imgur.com/J1h1OAg.png"></img>
+
 </p>
 
 <h1 align= 'center'> KPA</h1>
