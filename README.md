@@ -15,7 +15,9 @@
 <h4>in the future i plan to expand this project when i have time with the following functions.</h4>
 
 - Other methods of importing passwords other than just csv files
+
 --------
+
 <h5>Study project</4> 
 <h6>
 I have broken down the project into modules,
