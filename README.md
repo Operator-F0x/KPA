@@ -14,8 +14,7 @@
 
 <h4>in the future i plan to expand this project when i have time with the following functions.</h4>
 
-- a minimal local web interface with flask, To be able to manage your keepass database wherever you have a browser and python, effectively making it unnecessary to install another software to manage your database
-
+- a minimal local web interface with flask, To be able to manage your keepass database wherever you have a browser and python
 - Other methods of importing passwords other than just csv files or other keepass databases
 
 
