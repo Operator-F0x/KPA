@@ -27,4 +27,4 @@ and consequently check for duplicates by saving the new entries in the appropria
 
 --------
 
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/Daniele-Polizzi/KPA)
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/Technoir-Dev/KPA)
