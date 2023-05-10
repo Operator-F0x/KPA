@@ -1,4 +1,7 @@
-import hashlib, os, shelve, re
+import hashlib, os, shelve, re,glob
+
+
+
 
 # Function to check if the password matches the pattern
 def regex_password(psw):
@@ -6,8 +9,7 @@ def regex_password(psw):
     password_REGEX = r'^[a-zA-Z0-9!"#$&]+$'
     
     return bool(re.match(password_REGEX, psw))
-
-     
+  
 #Function to prompt the user to enter a password and check if it complies with the pattern
 def get_password():
 
@@ -34,7 +36,9 @@ def create_hash(Clear_password):
 # Function to save hash and salt to file
 def save_hash(hash_value, salt):
     
-    shelfFile = shelve.open(os.path.join('KPA', 'KEY','HASH'))
+    key_dir = os.path.join(os.getcwd(), 'kpa', 'KEY')
+    os.makedirs(key_dir, exist_ok=True)   
+    shelfFile = shelve.open(os.path.join('kpa', 'KEY','HASH'))
     hash = ('{},{}'.format(hash_value, salt))                       
     shelfFile['hash'] = hash
     
@@ -44,7 +48,7 @@ def save_hash(hash_value, salt):
 # End save_hash
 
 # Function to load hash and salt from file
-def load_hash():  
+def load_hash():
     # Load the hash and the salt from the HASH file
     shelfFile =  shelve.open(os.path.join('KPA', 'KEY', 'HASH'))
     shelfFile['hash']
@@ -56,21 +60,15 @@ def load_hash():
 
 # Function to check if the entered password is correct
 def check_password(password):
-    
     HASH , SALT= load_hash() 
     password_Hash, salt = create_hash(password)
     if  password_Hash == HASH and salt == SALT:
-        return True
-    else:
         return False
+    else:
+        return True
 # End check_password
+
 
 if __name__ == '__main__':
     None
-
-
-
-
-
-
 

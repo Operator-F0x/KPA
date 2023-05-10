@@ -1,6 +1,6 @@
-from Toolbox.initializer import initializer
-from Database_Strument.load_database import load_database
+import tkinter as tk
+from Database_Strument.Database_Manager import KPA
 
-initializer()
-load_database()
-
+kpa_istance = KPA()
+database = kpa_istance.auto_choose_database()
+kpa = kpa_istance.load_database(database) 
