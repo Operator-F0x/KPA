@@ -11,38 +11,27 @@ class KPA:
 		# If there are no KPA database files in the directory, create a new database
 		if not database_list_files:
 			# Prompt the user to enter a password until a valid one is entered
-			password = get_password()
+			prompt = 'Enter the password of the new KPA database --> '
+			password = get_password(prompt)
 			# Create a new database with the entered password and save it
 			keepass = pykeepass.create_database(os.path.join(database_dir, 'KPA.kdbx'), password)
 			keepass.save()
 			hash_value , salt= create_hash(password)
 			save_hash(hash_value, salt)
+			print('New KPA database created successfully.')
 
 	def auto_choose_database(self):
 
-		database_dir = os.path.join(os.getcwd(), 'kpa', 'DB')
-		os.makedirs(database_dir, exist_ok=True)
-		database_list_files = glob.glob(os.path.join(database_dir, 'KPA.kdbx'))
-
-		if not database_list_files:
-			print('Enter the password of the new KPA database --> ', end='')
-			password = get_password()
-			# Create a new database with the entered password and save it
-			keepass = pykeepass.create_database(os.path.join(database_dir, 'KPA.kdbx'), password)
-			keepass.save()
-			# Create a hash of the password and save it to a file
-			hash_value , salt= create_hash(password)
-			save_hash(hash_value, salt)
-			database_list_files = glob.glob(os.path.join(database_dir, 'KPA.kdbx'))
-		
-		database = database_list_files[0]	
+		database_list_files = glob.glob(os.path.join('kpa','DB', 'KPA.kdbx'))
+		database = database_list_files[0]
+			
 		return database
 
 	def load_database(self,database):
 		password = None
+		prompt = 'Enter your KPA database password --> '
 		while True:
-			print('Enter your KPA database password --> ', end='')
-			password = get_password()
+			password = get_password(prompt)
 			if check_password(password):
 				break
 			else:
@@ -53,7 +42,7 @@ class KPA:
 		print('Database loaded')
 		return KPA
 
-	def Add_Entry(self, kpa, group,  Title: str, Username: str, Password: str, Url: str, Notes: str):
+	def Add_Entry(self, kpa: object, group,  Title: str, Username: str, Password: str, Url: str, Notes: str):
 		# Check if an entry with the same username and password already exists
 		if  kpa.find_entries_by_username(Username) and kpa.find_entries_by_password(Password):
 			# If an entry with the same username and password already exists, print a warning message

@@ -1,4 +1,3 @@
-import tkinter as tk
 from Database_Strument.Database_Manager import KPA
 
 kpa_istance = KPA()

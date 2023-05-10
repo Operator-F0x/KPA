@@ -11,10 +11,10 @@ def regex_password(psw):
     return bool(re.match(password_REGEX, psw))
   
 #Function to prompt the user to enter a password and check if it complies with the pattern
-def get_password():
+def get_password(PROMPT_REQUEST: str):
 
     while True:
-        password_On_Clear = input()
+        password_On_Clear = input(PROMPT_REQUEST)
         if regex_password(password_On_Clear):
             break
         else:
@@ -23,7 +23,7 @@ def get_password():
     return password_On_Clear
 
 # Function to hash password
-def create_hash(Clear_password):
+def create_hash(Clear_password: str):
 
     salt = os.urandom(16)
     password_with_salt = Clear_password.encode('utf-8') + salt
@@ -34,7 +34,7 @@ def create_hash(Clear_password):
 # End Create_hash
 
 # Function to save hash and salt to file
-def save_hash(hash_value, salt):
+def save_hash(hash_value: str, salt: bytes):
     
     key_dir = os.path.join(os.getcwd(), 'kpa', 'KEY')
     os.makedirs(key_dir, exist_ok=True)   
@@ -59,7 +59,7 @@ def load_hash():
 # End load_hash
 
 # Function to check if the entered password is correct
-def check_password(password):
+def check_password(password: str):
     HASH , SALT= load_hash() 
     password_Hash, salt = create_hash(password)
     if  password_Hash == HASH and salt == SALT:
