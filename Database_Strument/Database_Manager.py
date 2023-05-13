@@ -1,6 +1,6 @@
 import os, glob
 import pykeepass
-from Toolbox.Hash_Gestion import get_password, check_password, create_hash, save_hash
+from Toolbox.get_password import get_password
 class KPA:
 	def __init__(self):
 
@@ -16,31 +16,29 @@ class KPA:
 			# Create a new database with the entered password and save it
 			keepass = pykeepass.create_database(os.path.join(database_dir, 'KPA.kdbx'), password)
 			keepass.save()
-			hash_value , salt= create_hash(password)
-			save_hash(hash_value, salt)
+
 			print('New KPA database created successfully.')
 
 	def auto_choose_database(self):
 
 		database_list_files = glob.glob(os.path.join('kpa','DB', 'KPA.kdbx'))
 		database = database_list_files[0]
-			
+
 		return database
 
 	def load_database(self,database):
 		password = None
 		prompt = 'Enter your KPA database password --> '
-		while True:
-			password = get_password(prompt)
-			if check_password(password):
-				break
-			else:
-				print('Wrong Password!')
-		# Create a PyKeePass object for the KPA database with the entered password
-		KPA = pykeepass.PyKeePass(database, password)
-		# Return the PyKeePass object
+		password = get_password(prompt)
+		# Create a PyKeePass object for the KPA database with the entered password	
+		try:
+			KPA = pykeepass.PyKeePass(database, password)
+		except:
+			print('Wrong Password!')
+
 		print('Database loaded')
-		return KPA
+
+		return KPA # Return the PyKeePass object
 
 	def Add_Entry(self, kpa: object, group,  Title: str, Username: str, Password: str, Url: str, Notes: str):
 		# Check if an entry with the same username and password already exists

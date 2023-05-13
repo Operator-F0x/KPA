@@ -1,5 +1,6 @@
 from Database_Strument.Database_Manager import KPA
-#
-kpa_istance = KPA()
-database = kpa_istance.auto_choose_database()
-kpa = kpa_istance.load_database(database) 
+
+KPA_ISTANCE = KPA()
+DATABASE = KPA_ISTANCE.auto_choose_database()
+KPA_PYKEEPASS = KPA_ISTANCE.load_database(DATABASE)
+
